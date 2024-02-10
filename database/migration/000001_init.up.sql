@@ -1,0 +1,6 @@
+CREATE TABLE link(
+    id SERIAL PRIMARY KEY,
+    slug VARCHAR(255) NOT NULL,
+    href VARCHAR(512) NOT NULL,
+    qr_code VARCHAR(1024)
+)

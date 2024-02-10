@@ -3,9 +3,10 @@ package models
 import "github.com/asaskevich/govalidator"
 
 type Link struct {
-	Slug   string `valid:"required" json:"slug" bson:"slug"`
-	Href   string `valid:"url,required" json:"href" bson:"href"`
-	QrCode string `valid:"optional" json:"qr_code" bson:"qr_code,omitempty"`
+	Id     string `valid:"optional" json:"id"`
+	Slug   string `valid:"required" json:"slug"`
+	Href   string `valid:"url,required" json:"href"`
+	QrCode string `valid:"optional" json:"qr_code"`
 }
 
 func NewLink(slug string, href string, qrCode string) (*Link, error) {
