@@ -9,6 +9,7 @@ services:
     environment:
       POSTGRES_URI: postgres://postgres:postgres@db:5432/shortify?sslmode=disable
       GIN_MODE: release
+      WEB_URL: ${WEB_URL}
     depends_on:
       - db
     networks:

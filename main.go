@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/dwdarm/shortify/app/adapters"
 	"github.com/dwdarm/shortify/app/domain/services"
 	"github.com/dwdarm/shortify/app/main/handlers"
@@ -21,11 +23,14 @@ func main() {
 
 	r := gin.Default()
 
-	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"*"}
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{os.Getenv("WEB_URL")},
+		AllowMethods:     []string{"GET", "POST"},
+		AllowHeaders:     []string{"Content-Type"},
+		AllowCredentials: true,
+	}))
 
-	r.Use(cors.New(config))
-	r.POST("api/links/", linkHandler.LinkCreate)
+	r.POST("api/links", linkHandler.LinkCreate)
 	r.GET("api/links/:slug", linkHandler.LinkGet)
 
 	r.Run()
