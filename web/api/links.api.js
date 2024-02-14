@@ -1,7 +1,7 @@
-
+const BASE_API = import.meta.env.VITE_API_URL;
 
 export const getLink = async (slug) => {
-    const res = await fetch(`/api/links/${slug}`);
+    const res = await fetch(`${BASE_API}/api/links/${slug}`);
     if (!res.ok) {
         throw new Error();
     }
@@ -12,7 +12,7 @@ export const getLink = async (slug) => {
 }
 
 export const createLink = async (data = {}) => {
-    const res = await fetch('/api/links', {
+    const res = await fetch(`${BASE_API}/api/links`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
